@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <a href="" class="boton-ir-atras" onclick="iratras()"><ion-icon name="arrow-back" ></ion-icon></a>
+    </ion-buttons>
+    <ion-title class="text-center ocultar-movil">
+      GALERÍA
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      GALERÍA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondo text-center">
+  <h1><img src="/assets/img/logo.png"class="logo" alt="Deportivos Katiuska"></h1>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-select class="text-morado bold text-left" style="max-width: 150px;top:20px;" [(ngModel)]="ordencategoria" (ionChange)="opencategoria()">
+          <ion-select-option value="{{admingaleriageneralCategory}}">Categoría</ion-select-option>
+          <ion-select-option value="Mujeres">Mujeres</ion-select-option>
+          <ion-select-option value="Hombres">Hombres</ion-select-option>
+          <ion-select-option value="Niños">Niños</ion-select-option>
+          <ion-select-option value="Adultos">Adultos</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col class="text-right">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- PC -->
+  <ion-grid class="categoria ocultar-movil">
+    <h2 class="text-morado bold">Galería</h2>
+    <ng-container *ngIf="!admingaleriasgenerales || admingaleriasgenerales.length == 0">
+      <div class="text-center text-negro">
+        Verifica tu Conexión
+      </div>
+    </ng-container>
+    <ion-row>
+      <ion-col size="3" *ngFor="let todo of porcategoria">
+        <ion-card button [routerLink]="['/producto-galeria-general', todo.id]">
+          <img src="{{todo.img}}" alt="{{todo.nombre}}">
+          <ion-card-header>
+            <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+            <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+          </ion-card-header>
+          <ion-button class="boton-home morado">Ver Producto</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- MOVIL -->
+  <ion-grid class="categoria ocultar-pc">
+    <h2 class="text-morado bold">Galería</h2>
+    <ng-container *ngIf="!admingaleriasgenerales || admingaleriasgenerales.length == 0">
+      <div class="text-center text-negro">
+        Verifica tu Conexión
+      </div>
+    </ng-container>
+    <ion-row>
+      <ion-col size="6" size-lg *ngFor="let todo of porcategoria">
+        <ion-card button [routerLink]="['/producto-galeria-general', todo.id]">
+          <img src="{{todo.img}}" alt="{{todo.nombre}}">
+          <ion-card-header>
+            <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+            <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+          </ion-card-header>
+          <ion-button class="boton-home morado">Ver Producto</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

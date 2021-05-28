@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="icon-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="text-center ocultar-movil">
+      Deportivos Katiuska
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      Deportivos Katiuska
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-select placeholder="Categorías" style="max-width: 150px;" [(ngModel)]="ordencategoria" (ionChange)="opencategoria()">
+          <ion-select-option value="todos">Todos</ion-select-option>
+          <ion-select-option value="Franelas">Franelas</ion-select-option>
+          <ion-select-option value="Sweaters">Sweaters</ion-select-option>
+          <ion-select-option value="Tapa Bocas">Tapa bocas</ion-select-option>
+          <ion-select-option value="Promociones">Promociones</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col class="text-right">
+        <h5 style="margin-top: 8px;">
+          <a style="cursor: pointer;" (click)="Onlogout()">Cerrar sesión</a>
+        </h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ng-container *ngIf="!todos || todos.length == 0">
+    <div class="text-center">
+      No tiene Productos o está Sin Conexión
+    </div>
+    
+    <div *ngFor="let n of [0,1,2]" padding>
+      <ion-skeleton-text></ion-skeleton-text>
+      <p>
+        <ion-skeleton-text class="text-skeleton"></ion-skeleton-text>
+      </p>
+    </div>
+  </ng-container>
+
+  <!-- TODOS -->
+  <ion-grid *ngIf="ordencategoria == 'todos'">
+    <ion-row>
+      <ion-col class="ion-col-movil" size="6" *ngFor="let todo of todos">
+        <ion-card button [routerLink]="['/details', todo.id]">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="4">
+                <img src="{{todo.img}}" class="imagen-dashboard" alt="{{todo.nombre}}">
+              </ion-col>
+              <ion-col size="8">
+                <h2 class="bold">{{todo.nombre}}</h2>
+                <h3>{{todo.codigo}}</h3>
+                <h3>{{todo.precio | number:'1.2-2':'es'}} BS</h3>
+                <h3>$ {{todo.preciodolar | number:'1.2-2':'es'}}</h3>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- CATEGORÍA -->
+  <ion-grid *ngIf="ordencategoria != 'todos'">
+    <ion-row>
+      <ion-col class="ion-col-movil" size="6" *ngFor="let todo of porcategoria">
+        <ion-card button [routerLink]="['/details', todo.id]">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="4">
+                <img src="{{todo.img}}" class="imagen-dashboard" alt="{{todo.nombre}}">
+              </ion-col>
+              <ion-col size="8">
+                <h2 class="bold">{{todo.nombre}}</h2>
+                <h3>{{todo.codigo}}</h3>
+                <h3>{{todo.precio | number:'1.2-2':'es'}} BS</h3>
+                <h3>$ {{todo.preciodolar | number:'1.2-2':'es'}}</h3>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="morado" routerLink="/details" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>

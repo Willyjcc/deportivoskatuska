@@ -1,0 +1,17 @@
+ion-content ion-toolbar {
+  --background: translucent;
+}
+h2{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+h5{
+  position: relative;
+  bottom: -65%;
+}

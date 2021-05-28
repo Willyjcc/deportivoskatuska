@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="text-center ocultar-movil">
+      Producto
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      Producto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-general text-center">
+    <br>
+    <ion-list lines="full">
+      <div *ngIf="admingaleriageneralId == null">
+      <!-- IMAGEN -->
+        <h5>Ingrese Link de la imagen:</h5>
+        <ion-input required type="text" placeholder="Link Imagen" [(ngModel)]="admingaleriageneral.img"></ion-input>
+      </div>
+      
+      <div *ngIf="admingaleriageneralId != null">
+        <img *ngIf="admingaleriageneral.img" src="{{admingaleriageneral.img}}" width="100%" style="max-width:600px;">
+        <br><br>
+        <ion-item *ngIf="admingaleriageneral">
+          <ion-input required type="text" placeholder="Link Imagen" [(ngModel)]="admingaleriageneral.img"></ion-input>
+        </ion-item>
+      </div>
+      <!-- IMAGEN -->
+
+      <!-- Campos -->
+      <ion-item *ngIf="admingaleriageneral">
+        <ion-select placeholder="Categorías" style="max-width: 150px;padding-left: 0;" [(ngModel)]="admingaleriageneral.categoria">
+          <ion-select-option value="mujeres">Mujeres</ion-select-option>
+          <ion-select-option value="hombres">Hombres</ion-select-option>
+          <ion-select-option value="ninios">Niños</ion-select-option>
+          <ion-select-option value="adultos">Adultos</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="admingaleriageneral">
+        <ion-input required type="text" placeholder="Código" [(ngModel)]="admingaleriageneral.codigo"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="admingaleriageneral">
+        <ion-input required type="text" placeholder="Nombre" [(ngModel)]="admingaleriageneral.nombre"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="admingaleriageneral">
+        <ion-input required type="text" placeholder="Tallas" [(ngModel)]="admingaleriageneral.tallas"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="admingaleriageneral">
+        <ion-textarea placeholder="Descripción" [(ngModel)]="admingaleriageneral.descripcion" required></ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="admingaleriageneral">
+        $ <ion-input required type="number" [(ngModel)]="admingaleriageneral.preciodolar" (keyup)="calcularpreciobs()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="admingaleriageneral.precio">
+        <h3 position="fixed" class="text-morado text-right">BS {{admingaleriageneral.precio | number:'1.2-2':'es'}}</h3>
+      </ion-item>
+
+
+
+    </ion-list>
+  </div>
+
+
+  <ion-button *ngIf="admingaleriageneral.nombre != ''  && admingaleriageneral.categoria != '' && admingaleriageneral.precio != 0 " class="morado" expand="full" (click)="saveAdminGaleriaGeneral()">Save</ion-button>
+
+  <ion-button disabled *ngIf="admingaleriageneral.nombre == ''  || admingaleriageneral.categoria == '' || admingaleriageneral.precio == 0 " class="morado" expand="full">Save</ion-button>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger">
+      <ion-fab-button class="boton-eliminar" color="danger" (click)="onRemoveAdminGaleriaGeneral(admingaleriageneralId)" routerLink="/admingaleriageneral" routerDirection="forward">
+          <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

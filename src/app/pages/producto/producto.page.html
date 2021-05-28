@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="text-center ocultar-movil">
+      Producto
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      Producto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="fondo ion-padding text-justify">
+  <div class="text-center">
+    <h1><img src="/assets/img/logo.png"class="logo" alt="Deportivos Katiuska"></h1>
+  </div>
+
+  <div class="container">  
+    <ion-grid>
+      <ion-row *ngIf="this.todo.nombre != ''">
+        <ion-col size="12" size-sm>
+          <ion-card>
+          <img src="{{todo.img}}" width="100%" style="cursor: pointer;" alt="{{todo.nombre}}" (click)="openViewer()">
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-sm class="text-md-left text-negro  white">
+          <h2>
+            {{todo.nombre}}
+            <br>
+            <label style="font-size: 12px;">Código del producto: {{todo.codigo}}</label>
+          </h2>
+          <h2>
+            <!-- <label class="text-morado" style="font-size: 16px;">$1 = {{dolartoday | number:'1.2-2':'es'}}BS</label>
+            <br> <br> -->
+            <b>{{todo.precio | number:'1.2-2':'es' }}</b>
+            <!-- <br>
+            {{precio_dolar | number:'1.2-2':'es'}} -->
+          </h2>
+          <h4>
+            Tallas: {{todo.tallas}}
+          </h4>
+          <br>
+          <div class="text-center">
+            <ion-button class="morado" (click)="ordenarws()">Encargar por Whatsapp</ion-button>
+          </div>
+          
+          <br>
+          <h5>Descripción</h5>
+          <h6>
+            {{todo.descripcion}}
+          </h6>
+          <br>
+          <h5>¿Cómo hacer el encargo por Whatsapp?</h5>
+          <h6>
+            1) Haz click al botón "Encargar por Whatsapp"
+            <br>
+            2) Accede al Whatsapp y envia el mensaje
+            <br>
+            3) Espere mientras un asesor se pone en contacto con usted. 
+          </h6>
+          <br>
+          <img src="/assets/img/pay1.png" width="120px" alt="Transferencias Bancarias">
+          <img src="/assets/img/pay2.png" width="120px" alt="Pago Móvil">
+          <img src="/assets/img/pay3.png" width="120px" alt="AirUSD">
+          <img src="/assets/img/pay4.png" width="120px" alt="BTC">
+
+
+        </ion-col>
+      </ion-row>
+
+
+      <!-- SIN CONEXION -->
+      <ion-row *ngIf="this.todo.nombre == ''">
+        <ion-col size="12" size-sm>
+          <div class="text-center text-negro">
+            No hay Productos / Verifica tu Conexión
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

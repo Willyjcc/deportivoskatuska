@@ -1,0 +1,7 @@
+{
+  "name": "deportivoskatiuska",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

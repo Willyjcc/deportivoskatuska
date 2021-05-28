@@ -1,0 +1,252 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="text-center ocultar-movil">
+      ESTAMOS TRABAJANDO PARA ELABORAR LOS PEDIDOS DE MANERA SEGURA
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      HAZ TUS ENCARGOS DE MANERA SEGURA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="fondo text-center">
+  <h1><img src="/assets/img/logo.png"class="logo" alt="Deportivos Katiuska"></h1>
+
+  <ion-select class="text-morado bold text-left" style="top:20px;" [(ngModel)]="ordencategoria" (ionChange)="opencategoria()">
+    <ion-select-option value="todos">Todos</ion-select-option>
+    <ion-select-option value="Franelas">Franelas</ion-select-option>
+    <ion-select-option value="Sweaters">Sweaters</ion-select-option>
+    <ion-select-option value="Tapa Bocas">Tapa bocas</ion-select-option>
+  </ion-select>
+
+  <!-- PC -->
+  <ion-grid class="categoria ocultar-movil">
+    <div *ngIf="ordencategoria == 'todos'">
+      <!-- TAPA BOCAS -->
+      <h2 class="text-morado bold">Tapa Bocas</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="3" *ngFor="let todo of tapabocas">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <!-- FRANELAS -->
+      <h2 class="text-morado bold">Franelas</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="3" *ngFor="let todo of franelas">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <!-- SWEATERS -->
+      <h2 class="text-morado bold">Sweaters</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="3" *ngFor="let todo of sweaters">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- CATEGORÍA -->
+    <div *ngIf="ordencategoria != 'todos'">
+      <h2 class="text-morado bold">{{ordencategoria}}</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="3" *ngFor="let todo of porcategoria">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+  <!-- MOVIL -->
+  <ion-grid class="categoria ocultar-pc">
+    <div *ngIf="ordencategoria == 'todos'">
+      <!-- TAPA BOCAS -->
+      <h2 class="text-morado bold">Tapa Bocas</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="6" size-lg *ngFor="let todo of tapabocas">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <!-- FRANELAS -->
+      <h2 class="text-morado bold">Franelas</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="6" size-lg *ngFor="let todo of franelas">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <!-- SWEATERS -->
+      <h2 class="text-morado bold">Sweaters</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="6" size-lg *ngFor="let todo of sweaters">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- CATEGORÍA -->
+    <div *ngIf="ordencategoria != 'todos'">
+      <h2 class="text-morado bold">{{ordencategoria}}</h2>
+      <ng-container *ngIf="!todos || todos.length == 0">
+        <div class="text-center text-negro">
+          Verifica tu Conexión
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col size="6" size-lg *ngFor="let todo of porcategoria">
+          <ion-card button [routerLink]="['/producto', todo.id]">
+            <img src="{{todo.img}}" alt="{{todo.nombre}}">
+            <ion-card-header>
+              <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+              <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-button class="boton-home morado">Ver Producto</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </ion-grid>
+
+  <br>
+
+  <!-- Footer -->
+  <ion-grid class="footer">
+    <div class="container">
+      <ion-row class="text-md-left">
+        <ion-col size="12" size-md>
+          <h6>
+            <b>INFORMACIÓN</b>
+            <br><br>
+            <ul>
+              <li><a routerLink="/informacion-de-envio">Información de envío</a></li>
+              <li><a routerLink="/politicas-de-privacidad">Política de Privacidad</a></li>
+              <li>
+                Horario: 
+                <br>
+                Domingo a Viernes(5:30pm)
+              </li>
+            </ul>
+          </h6>
+        </ion-col>
+        <ion-col size="12" size-md>
+          <h6>
+            <b>QUIÉNES SOMOS</b>
+            <br><br>
+            <ul>
+              <li><a routerLink="/sobre-nosotros">Sobre Deportivos Katiuska</a></li>
+              <li><a routerLink="/responsabilidad-social">Responsabilidad social de Deportivos Katiuska</a></li>
+              <li><a routerLink="/mapa-del-sitio">Mapa del sitio</a></li>
+            </ul>
+          </h6>
+        </ion-col>
+        <ion-col size="12" size-md>
+          <h6>
+            <b>SÍGUENOS</b>
+            <br><br>
+            <a href="https://www.facebook.com/Deportivos-Katiuska-104357451254718" target="_blank"><img src="/assets/img/facebook.svg" class="icon-social" alt="Facebok"></a>
+            <a href="https://www.instagram.com/deportivoskatiuska/" target="_blank"><img src="/assets/img/instagram.svg" class="icon-social" alt="Instagram"></a>
+            <a href="https://twitter.com/DeportivosK" target="_blank"><img src="/assets/img/twitter.svg" class="icon-social" alt="Twitter"></a>
+
+            <br><br><br>
+
+            <img src="/assets/img/pay1.png" class="icon-pay" alt="Transferencias Bancarias">
+            <img src="/assets/img/pay2.png" class="icon-pay" alt="Pago Móvil">
+            <img src="/assets/img/pay3.png" class="icon-pay" alt="AirUSD">
+            <img src="/assets/img/pay4.png" class="icon-pay" alt="BTC">
+          </h6>
+        </ion-col>
+      </ion-row>
+
+      <br>
+
+      <ion-row>
+        <ion-col>
+          Copyright © 2020 deportivoskatiuska.com
+        </ion-col>
+      </ion-row>
+    </div>
+    
+  </ion-grid>
+
+
+</ion-content>

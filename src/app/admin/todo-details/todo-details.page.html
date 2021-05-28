@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="text-center ocultar-movil">
+      Producto
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      Producto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-general text-center">
+    <br>
+    <ion-list lines="full">
+      <!-- IMAGEN -->
+      <div *ngIf="todoId == null">
+        <div *ngIf="urlImage | async; else btnDisabled"> Imagen Actualizada </div>
+        <ng-template #btnDisabled>
+          Imagen debe ser 520 x 693 
+        </ng-template>
+        <br>
+        <!-- <img *ngIf="todo.img" src="{{todo.img}}" width="100%" style="max-width:600px;"> -->
+        <!-- <ion-card *ngIf="todo.img == '' " class="fucsia" style="max-width:600px;">
+          <ion-card-content>
+            <img src="/assets/img/preview.png" width="100%">
+          </ion-card-content>  
+        </ion-card> -->
+        <h5>Seleccionar imagen:</h5>
+        <ion-input type="file" accept=".png, .jpg" (change)="onUpload($event)"></ion-input>
+        <br><br>
+        <input id="imagen" type="hidden" [(ngModel)]="todo.img" [value]="urlImage | async">
+      </div>
+      
+      <div *ngIf="todoId != null">
+        <img *ngIf="todo.img" src="{{todo.img}}" width="100%" style="max-width:600px;">
+        <br><br>
+        <input id="imagen" type="hidden" [(ngModel)]="todo.img" [value]="urlImage | async">
+      </div>
+      <!-- IMAGEN -->
+
+      <!-- Campos -->
+      <ion-item *ngIf="todo">
+        <ion-select placeholder="Categorías" style="max-width: 150px;padding-left: 0;" [(ngModel)]="todo.categoria">
+          <ion-select-option value="franela">Franela</ion-select-option>
+          <ion-select-option value="sweater">Sweater</ion-select-option>
+          <ion-select-option value="tapa boca">Tapa boca</ion-select-option>
+          <ion-select-option value="promocion">Promoción</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="todo">
+        <ion-input required type="text" placeholder="Código" [(ngModel)]="todo.codigo"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="todo">
+        <ion-input required type="text" placeholder="Nombre" [(ngModel)]="todo.nombre"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="todo">
+        <ion-input required type="text" placeholder="Tallas" [(ngModel)]="todo.tallas"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="todo">
+        <ion-textarea placeholder="Descripción" [(ngModel)]="todo.descripcion" required></ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="todo">
+        $ <ion-input required type="number" [(ngModel)]="todo.preciodolar" (keyup)="calcularpreciobs()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="todo.precio">
+        <h3 position="fixed" class="text-morado text-right">BS {{todo.precio | number:'1.2-2':'es'}}</h3>
+      </ion-item>
+
+
+
+    </ion-list>
+  </div>
+
+
+  <ion-button *ngIf="todo.nombre != ''  && todo.categoria != '' && todo.precio != 0 " class="morado" expand="full" (click)="saveTodo()">Save</ion-button>
+
+  <ion-button disabled *ngIf="todo.nombre == ''  || todo.categoria == '' || todo.precio == 0 " class="morado" expand="full">Save</ion-button>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger">
+      <ion-fab-button class="boton-eliminar" color="danger" (click)="onRemoveTodo(todoId)" routerLink="/dashboard" routerDirection="forward">
+          <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

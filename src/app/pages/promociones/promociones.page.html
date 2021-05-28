@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <a href="" class="boton-ir-atras" onclick="iratras()"><ion-icon name="arrow-back" ></ion-icon></a>
+    </ion-buttons>
+    <ion-title class="text-center ocultar-movil">
+      PROMOCIONES
+    </ion-title>
+    <ion-title class="text-center ocultar-pc">
+      PROMOCIONES
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondo text-center">
+  <h1><img src="/assets/img/logo.png"class="logo" alt="Deportivos Katiuska"></h1>
+
+  <!-- PC -->
+  <ion-grid class="categoria ocultar-movil">
+    <h2 class="text-morado bold">Promociones</h2>
+    <ng-container *ngIf="!todos || todos.length == 0">
+      <div class="text-center text-negro">
+        Verifica tu Conexión
+      </div>
+    </ng-container>
+    <ion-row>
+      <ion-col size="3" *ngFor="let todo of promociones">
+        <ion-card button [routerLink]="['/producto', todo.id]">
+          <img src="{{todo.img}}" alt="{{todo.nombre}}">
+          <ion-card-header>
+            <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+            <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+          </ion-card-header>
+          <ion-button class="boton-home morado">Ver Producto</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- MOVIL -->
+  <ion-grid class="categoria ocultar-pc">
+    <h2 class="text-morado bold">Promociones</h2>
+    <ng-container *ngIf="!todos || todos.length == 0">
+      <div class="text-center text-negro">
+        Verifica tu Conexión
+      </div>
+    </ng-container>
+    <ion-row>
+      <ion-col size="6" size-lg *ngFor="let todo of promociones">
+        <ion-card button [routerLink]="['/producto', todo.id]">
+          <img src="{{todo.img}}" alt="{{todo.nombre}}">
+          <ion-card-header>
+            <ion-card-subtitle class="text-morado bold"> {{todo.precio | number:'1.2-2':'es'}}</ion-card-subtitle>
+            <ion-card-title class="text-center bold">{{todo.nombre}}</ion-card-title>
+          </ion-card-header>
+          <ion-button class="boton-home morado">Ver Producto</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

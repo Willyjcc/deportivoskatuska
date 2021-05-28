@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "deportivoskatiuska-d8ea4"
+  },
+  "targets": {
+    "deportivoskatiuska-d8ea4": {
+      "hosting": {
+        "app": [
+          "deportivoskatiuska-d8ea4"
+        ]
+      }
+    }
+  }
+}
